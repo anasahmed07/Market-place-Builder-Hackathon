@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Star, Minus, Plus, ShoppingCart } from 'lucide-react'
 import ProductCardGroup from '@/components/productCardGroup'
-import { TypeProduct, Review } from '@/lib/utils'
+import { TypeProduct, Review } from '@/lib/types'
 import ReviewCard from '@/components/review'
 
 interface Product {
@@ -53,7 +53,7 @@ const product: Product = {
 }
 
 let relatedProducts:TypeProduct[] = [
-    { name: 'Vertical Striped Shirt', price: 212, oldPrice: 232, rating: 5, image: "/images/products/vertical-striped.png", slug: "vertical-striped-shirt", category: "t-shirt" },
+    { name: 'Vertical Striped Shirt', price: 212, discount: 22, rating: 5, image: "/images/products/vertical-striped.png", slug: "vertical-striped-shirt", category: "t-shirt" },
     { name: 'Courage Graphic T-shirt', price: 145, rating: 4.3, image: "/images/products/courage-graphic.png", slug: "courage-graphic-t-shirt", category: "t-shirt" },
     { name: 'Loose Fit Bermuda Shorts', price: 80, rating: 4, image: "/images/products/loose-fit.png", slug: "loose-fit-bermuda-shorts", category: "shorts" },
     { name: 'Faded Skinny Jeans', price: 210, rating: 4.5, image: "/images/products/faded-skinny-jeans.png", slug: "faded-skinny-jeans", category: "jeans" },

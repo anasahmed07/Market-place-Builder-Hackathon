@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Minus, Plus, X } from "lucide-react";
-import { CartItem } from "@/lib/utils";
+import { CartItem } from "@/lib/types";
 
 export default function Component() {
   // const cartItems: CartItem[] = []

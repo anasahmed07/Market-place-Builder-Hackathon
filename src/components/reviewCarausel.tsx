@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import ReviewCard from "@/components/review";
-import { Review } from "@/lib/utils";
+import { Review } from "@/lib/types";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { integralCF, satoshi } from "@/styles/fonts";
 

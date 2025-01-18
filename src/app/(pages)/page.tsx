@@ -2,18 +2,18 @@ import HeroSection from "../../components/homepageComponents/hero";
 import BrowseByDressStyle from "../../components/homepageComponents/browseByDressStyle";
 import BrandLogoBanner from "@/components/homepageComponents/brandLogoBanner";
 import ProductCardGroup from "@/components/productCardGroup";
-import { TypeProduct } from "@/lib/utils";
+import { TypeProduct } from "@/lib/types";
 import ReviewCarousel from "@/components/reviewCarausel";
 
 let newArrivalProducts:TypeProduct[] = [
   { name: 'T-shirt with Tape Details', price: 120, rating: 5, image: "/images/products/t-shirt-with-taped-details.png", slug: "t-shirt-with-tape-details", category: "t-shirt" },
-  { name: 'Skinny Fit Jeans', price: 240, oldPrice: 260, rating: 4.5, image: "/images/products/skinny-fit-jeans.png", slug: "skinny-fit-jeans", category: "jeans" },
+  { name: 'Skinny Fit Jeans', price: 240, discount: 10, rating: 4.5, image: "/images/products/skinny-fit-jeans.png", slug: "skinny-fit-jeans", category: "jeans" },
   { name: 'Checkered Shirt', price: 180, rating: 4.7, image: "/images/products/checkerd-shirt.png", slug: "checkered-shirt", category: "shirt" },
-  { name: 'Sleeve Striped T-shirt', price: 130, oldPrice: 160, rating: 4.8, image: "/images/products/sleeve-striped-t-shirt.png", slug: "sleeve-striped-t-shirt", category: "t-shirt" },
+  { name: 'Sleeve Striped T-shirt', price: 130, discount: 16, rating: 4.8, image: "/images/products/sleeve-striped-t-shirt.png", slug: "sleeve-striped-t-shirt", category: "t-shirt" },
 ]
 
 let topSellingProducts:TypeProduct[] = [
-  { name: 'Vertical Striped Shirt', price: 212, oldPrice: 232, rating: 5, image: "/images/products/vertical-striped.png", slug: "vertical-striped-shirt", category: "t-shirt" },
+  { name: 'Vertical Striped Shirt', price: 212, discount: 22, rating: 5, image: "/images/products/vertical-striped.png", slug: "vertical-striped-shirt", category: "t-shirt" },
   { name: 'Courage Graphic T-shirt', price: 145, rating: 4.3, image: "/images/products/courage-graphic.png", slug: "courage-graphic-t-shirt", category: "t-shirt" },
   { name: 'Loose Fit Bermuda Shorts', price: 80, rating: 4, image: "/images/products/loose-fit.png", slug: "loose-fit-bermuda-shorts", category: "shorts" },
   { name: 'Faded Skinny Jeans', price: 210, rating: 4.5, image: "/images/products/faded-skinny-jeans.png", slug: "faded-skinny-jeans", category: "jeans" },

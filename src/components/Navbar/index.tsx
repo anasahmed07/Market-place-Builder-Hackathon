@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { integralCF } from "@/styles/fonts";
-import { NavMenu } from "../navbartypes";
+import { NavMenu } from "@/lib/types";
 import { MenuList } from "./MenuList";
 import {NavigationMenu, NavigationMenuList} from "@/components/ui/navigationMenu";
 import { MenuItem } from "./MenuItem";
 import InputGroup from "@/components/ui/inputgroup";
-import ResponsiveTopNavbar from "@/components/Navbar/TopNavbar/ResponsiveTopNavbar";
+import ResponsiveTopNavbar from "@/components/Navbar/ResponsiveTopNavbar";
 import { Search,CircleUserRound, ShoppingCart } from "lucide-react";
 
 const data:NavMenu = [
@@ -17,26 +17,26 @@ const data:NavMenu = [
     children: [
       {
         id: 11,
-        label: "Men's clothes",
-        url: "/shop#men-clothes",
+        label: "Formal clothes",
+        url: "/shop#formal",
         description: "In attractive and spectacular colors and designs",
       },
       {
         id: 12,
-        label: "Women's clothes",
-        url: "/shop#women-clothes",
+        label: "Party Dersses",
+        url: "/shop#party",
         description: "Ladies, your style and tastes are important to us",
       },
       {
         id: 13,
-        label: "Kids clothes",
-        url: "/shop#kids-clothes",
+        label: "Gym clothes",
+        url: "/shop#gym",
         description: "For all ages, with happy and beautiful colors",
       },
       {
         id: 14,
-        label: "Bags and Shoes",
-        url: "/shop#bag-shoes",
+        label: "Casual Clothes",
+        url: "/shop#casual",
         description: "Suitable for men, women and all tastes and styles",
       },
     ],

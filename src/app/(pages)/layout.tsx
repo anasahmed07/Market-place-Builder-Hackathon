@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Footer from "@/components/footer";
 import TopBanner from "@/components/topBanner";
 import { satoshi } from "@/styles/fonts";
-import TopNavbar from "@/components/Navbar/TopNavbar";
+import TopNavbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "SHOP.CO | By Anas Ahmed",

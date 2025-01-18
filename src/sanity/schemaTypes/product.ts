@@ -39,6 +39,39 @@ export default defineType({
             validation: (Rule) => Rule.required(),
         }),
         defineField({
+            name: 'dressStyle',
+            type: 'string',
+            title: 'Dress Style',
+            options: {
+                list: [
+                    { title: 'Casual', value: 'casual' },
+                    { title: 'Formal', value: 'formal' },
+                    { title: 'Party', value: 'party' },
+                    { title: 'Gym', value: 'gym' },
+                ],
+            },
+            validation: (Rule) => Rule.required().error('Dress style is required.'),
+        }),
+        defineField({
+            name: 'tag',
+            type: 'array',
+            title: 'Tags',
+            of: [
+                {
+                    type: 'string',
+                },
+            ],
+            options: {
+                list: [
+                    { title: 'New Arrival', value: 'newarrival' },
+                    { title: 'Top Selling', value: 'topselling' },
+                    { title: 'Recommended', value: 'recommended' },
+                ]
+            },
+            validation: (Rule) =>
+                Rule.unique().error('Each tag should be unique.'),
+        }),
+        defineField({
             name: 'description',
             type: 'text',
             title: 'Description',

@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { integralCF } from "@/styles/fonts"
 import { ProductCard } from "./productCard"
-import { TypeProduct } from "@/lib/utils"
+import { TypeProduct } from "@/lib/types"
 
 export default function ProductCardGroup(prams: { products: TypeProduct[] , url?:string , title:string}){
     return(

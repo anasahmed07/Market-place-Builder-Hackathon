@@ -1,4 +1,4 @@
-import { TypeProduct } from "@/lib/utils";
+import { TypeProduct } from "@/lib/types";
 import Rating from "./rating";
 import Image from "next/image";
 import Link from "next/link";

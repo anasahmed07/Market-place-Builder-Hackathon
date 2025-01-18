@@ -1,4 +1,4 @@
-import { TypeProduct } from "./utils";
+import { TypeProduct } from "./types";
 
 export const products: TypeProduct[] = [
   {
@@ -13,7 +13,7 @@ export const products: TypeProduct[] = [
     slug: "polo-with-tipping-details",
     name: "Polo with Tipping Details",
     price: 180,
-    oldPrice: 260,
+    discount: 10,
     rating: 4.8,
     image: "/images/products/polo-with-tipping-details.png",
     category: "Shirts",
@@ -22,7 +22,7 @@ export const products: TypeProduct[] = [
     slug: "black-striped-t-shirt",
     name: "Black Striped T-shirt",
     price: 120,
-    oldPrice: 150,
+    discount: 10,
     rating: 4.2,
     image: "/images/products/black-striped-t-shirt.png",
     category: "T-shirts",
@@ -31,7 +31,7 @@ export const products: TypeProduct[] = [
     slug: "skinny-fit-jeans",
     name: "Skinny Fit Jeans",
     price: 240,
-    oldPrice: 260,
+    discount: 10,
     rating: 4.7,
     image: "/images/products/skinny-fit-jeans.png",
     category: "Jeans",
@@ -48,7 +48,7 @@ export const products: TypeProduct[] = [
     slug: "sleeve-striped-t-shirt",
     name: "Sleeve Striped T-shirt",
     price: 130,
-    oldPrice: 160,
+    discount: 10,
     rating: 4.3,
     image: "/images/products/sleeve-striped-t-shirt.png",
     category: "T-shirts",
@@ -57,7 +57,7 @@ export const products: TypeProduct[] = [
     slug: "vertical-striped-shirt",
     name: "Vertical Striped Shirt",
     price: 212,
-    oldPrice: 232,
+    discount: 10,
     rating: 4.6,
     image: "/images/products/vertical-striped.png",
     category: "Shirts",
@@ -74,7 +74,7 @@ export const products: TypeProduct[] = [
     slug: "loose-fit-bermuda-shorts",
     name: "Loose Fit Bermuda Shorts",
     price: 80,
-    oldPrice: 110,
+    discount: 10,
     rating: 4.1,
     image: "/images/products/loose-fit.png",
     category: "Shorts",
@@ -91,7 +91,7 @@ export const products: TypeProduct[] = [
     slug: "one-life-graphic-t-shirt",
     name: "One Life Graphic T-shirt",
     price: 220,
-    oldPrice: 250,
+    discount: 10,
     rating: 4.6,
     image: "/images/products/one-life-graphic-t-shirt.png",
     category: "Jackets",

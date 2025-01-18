@@ -1,4 +1,4 @@
-import { Review } from "@/lib/utils";
+import { Review } from "@/lib/types";
 import Rating from "@/components/rating";
 import { Check } from "lucide-react";
 

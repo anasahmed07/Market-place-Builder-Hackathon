@@ -1,7 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuTrigger,} from "@/components/ui/navigationMenu";
-import { MenuListData } from "../navbartypes";
+import { MenuListData } from "@/lib/types";
 
 export type MenuListProps = {
   data: MenuListData;
