@@ -8,7 +8,7 @@ The following documents and images provide detailed information about the busine
 
 - [Marketplace Business Goals - SHOP.CO.pdf](https://github.com/anasahmed07/Market-place-Builder-Hackathon/blob/main/Documentation/Marketplace%20Business%20Goals%20-%20%20Shop.co.pdf): A document outlining the business goals of the Shop.co marketplace.
 - [Marketplace Technical Foundation - SHOP.CO.pdf](https://github.com/anasahmed07/Market-place-Builder-Hackathon/blob/main/Documentation/Marketplace%20Technical%20Foundation%20-%20SHOP.CO%20(1).pdf): A document detailing the technical foundation of the Shop.co marketplace.
-- [Day 3 - API Integration Report - SHOP.CO.pdf](https://github.com/anasahmed07/Market-place-Builder-Hackathon/blob/main/Documentation/Day%3%-%API%Integration%Report%-%SHOP.CO.pdf): A document outlining the data migration and improver scheemas.
+- [Day 3 - API Integration Report - SHOP.CO.pdf](https://github.com/anasahmed07/Market-place-Builder-Hackathon/blob/main/Documentation/Day%203%20-%20API%20Integration%20Report%20-%20SHOP.CO.pdf): A document outlining the data migration and improved scheemas of the SHOP.CO Marketplace.
 - [shop.co wireframe and archetecture.png](https://github.com/anasahmed07/Market-place-Builder-Hackathon/blob/main/Documentation/shop.co%20wireframe%20and%20archetecture.png): An image showing the wireframe and architecture of the project.
 - [shop.co wireframe and archetecture.svg](https://github.com/anasahmed07/Market-place-Builder-Hackathon/blob/main/Documentation/shop.co%20wireframe%20and%20archetecture.svg): An SVG version of the wireframe and architecture.
 
