@@ -1,17 +1,18 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Star, Minus, Plus, ShoppingCart } from 'lucide-react'
 import ProductCardGroup from '@/components/productCardGroup'
-import { TypeProduct, Review } from '@/lib/types'
+import { TypeProduct, Review, fullProduct } from '@/lib/types'
 import ReviewCard from '@/components/review'
+import { fetchProductBySlug, fetchproducts } from '@/lib/utils'
+import ProductPrice from '@/components/productPrice'
+// import ProductPrice from '@/components/productPrice'
 
 interface Product {
-  id: number
   name: string
   price: number
-  oldPrice: number
   discount: number
   rating: number
   reviewCount: number
@@ -24,10 +25,8 @@ interface Product {
 
 // This would typically come from an API or database
 const product: Product = {
-  id: 1,
   name: "ONE LIFE GRAPHIC T-SHIRT",
   price: 260,
-  oldPrice: 300,
   discount: 13,
   rating: 4.5,
   reviewCount: 45,
@@ -52,22 +51,37 @@ const product: Product = {
   ]
 }
 
-let relatedProducts:TypeProduct[] = [
-    { name: 'Vertical Striped Shirt', price: 212, discount: 22, rating: 5, image: "/images/products/vertical-striped.png", slug: "vertical-striped-shirt", category: "t-shirt" },
-    { name: 'Courage Graphic T-shirt', price: 145, rating: 4.3, image: "/images/products/courage-graphic.png", slug: "courage-graphic-t-shirt", category: "t-shirt" },
-    { name: 'Loose Fit Bermuda Shorts', price: 80, rating: 4, image: "/images/products/loose-fit.png", slug: "loose-fit-bermuda-shorts", category: "shorts" },
-    { name: 'Faded Skinny Jeans', price: 210, rating: 4.5, image: "/images/products/faded-skinny-jeans.png", slug: "faded-skinny-jeans", category: "jeans" },
-  ]
 
-export default function ProductDetail() {
+export default function ProductDetail({ params, }: { params: Promise<{ slug: string }> }) {
+  const [product0, setProduct] = useState<fullProduct>() 
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
   const [selectedSize, setSelectedSize] = useState(product.sizes[2])
   const [quantity, setQuantity] = useState(1)
   const [activeTab, setActiveTab] = useState('details')
   const [mainImage, setMainImage] = useState(product.images[0])
+  const [relatedProducts, setRelatedProducts] = useState<TypeProduct[]>([])
+  
+
+  useEffect(() => {
+    const getPageData = async () => {
+      const data = await fetchProductBySlug((await params).slug);
+      setProduct(data);
+      console.log(data);
+    };
+    getPageData();
+  }, []);
+
+  useEffect(() => {
+    const getRelatedProducts = async () => {
+      const relatedProducts: TypeProduct[] = await fetchproducts("recommended")
+      setRelatedProducts(relatedProducts)
+      console.log(relatedProducts)
+    };
+    getRelatedProducts();
+  }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mb-10 ">
       <nav className="flex mb-8 text-sm" aria-label="Breadcrumb">
         <ol className="inline-flex items-center space-x-1 md:space-x-3">
           <li><Link href="/" className="text-gray-500 hover:text-gray-700">Home</Link></li>
@@ -82,9 +96,9 @@ export default function ProductDetail() {
 
       <div className="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
         {/* Image gallery */}
-        <div className="flex flex-col-reverse">
-          <div className="hidden mt-6 w-full max-w-2xl mx-auto sm:block lg:max-w-none">
-            <div className="grid grid-cols-4 gap-6" aria-orientation="horizontal" role="tablist">
+        <div className="lg:grid lg:grid-cols-4 gap-6">
+          <div className="col-span-1 hidden w-full max-w-2xl mx-auto sm:block lg:max-w-none">
+            <div className="grid grid-rows-4 gap-6" aria-orientation="vertical" role="tablist">
               {product.images.map((image, index) => (
                 <button
                   key={index}
@@ -100,7 +114,7 @@ export default function ProductDetail() {
             </div>
           </div>
 
-          <div className="w-full aspect-w-1 aspect-h-1">
+          <div className="col-span-3 w-full bg aspect-w-1 aspect-h-1">
             <Image
               src={mainImage}
               alt={product.name}
@@ -141,11 +155,13 @@ export default function ProductDetail() {
             <p className="text-base text-gray-900">{product.description}</p>
           </div>
 
-          <div className="mt-4 flex items-center">
+          {/* <div className="mt-4 flex items-center">
             <p className="text-3xl font-bold text-gray-900">${product.price}</p>
             <p className="ml-4 text-xl font-medium text-gray-500 line-through">${product.oldPrice}</p>
             <p className="ml-4 text-lg font-medium text-red-500">-{product.discount}%</p>
-          </div>
+          </div> */}
+          <ProductPrice price={product.price} discount={product.discount} pdp={true} />
+
 
           <div className="mt-6">
             <h3 className="text-sm font-medium text-gray-900">Color</h3>
@@ -164,6 +180,7 @@ export default function ProductDetail() {
               ))}
             </div>
           </div>
+          {/* <ProductPrice price={product.price} discount={product.discount} /> */}
 
           <div className="mt-6">
             <h3 className="text-sm font-medium text-gray-900">Size</h3>

@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { TypeProduct } from "./types"
+import { fullProduct, TypeProduct } from "./types"
 import { client } from '@/sanity/lib/client'
 
 export function cn(...inputs: ClassValue[]) {
@@ -33,3 +33,30 @@ const data = await res
 return data
 }
 
+
+export async function fetchProductBySlug(slug:string): Promise<fullProduct> {
+  let productQuery = `*[_type == "product" && slug.current == "${slug}"][0] {
+  name,
+  "slug": slug.current,
+  price,
+  discount,
+  "category": category->name,
+  dressStyle,
+  tag,
+  description,
+  "images": images[].asset->url,
+  sizes,
+  colors,
+  rating,
+  "reviews": reviews[]->{
+    _id,
+    rating,
+    comment,
+    "author": author->name
+  }
+}`
+
+const res = await client.fetch(productQuery)
+const data = await res
+return data
+}
