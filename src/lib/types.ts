@@ -27,21 +27,6 @@ export interface Review {
   date: string
 }
 
-export interface NewTypeProduct {
-  id: number
-  name: string
-  price: number
-  oldPrice: number
-  discount: number
-  rating: number
-  reviewCount: number
-  description: string
-  colors: string[]
-  sizes: string[]
-  images: string[]
-  reviews: Review[]
-}
-
 export interface RelatedProduct {
   id: number
   name: string
@@ -65,6 +50,19 @@ export interface Product {
   discount: Discount;
   rating: number;
 };
+
+export interface fullProduct {
+  slug: string
+  name: string
+  price: number
+  discount: number
+  rating: number
+  description: string
+  colors: string[]
+  sizes: string[]
+  images: string[]
+  reviews: Review[]
+}
 
 export type MenuItem = {
   id: number;

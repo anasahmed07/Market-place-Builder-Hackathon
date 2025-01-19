@@ -1,14 +1,15 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Star, Minus, Plus, ShoppingCart } from 'lucide-react'
 import ProductCardGroup from '@/components/productCardGroup'
-import { TypeProduct, Review } from '@/lib/types'
+import { TypeProduct, Review, fullProduct } from '@/lib/types'
 import ReviewCard from '@/components/review'
+import { fetchProductBySlug, fetchproducts } from '@/lib/utils'
+// import ProductPrice from '@/components/productPrice'
 
 interface Product {
-  id: number
   name: string
   price: number
   oldPrice: number
@@ -24,7 +25,6 @@ interface Product {
 
 // This would typically come from an API or database
 const product: Product = {
-  id: 1,
   name: "ONE LIFE GRAPHIC T-SHIRT",
   price: 260,
   oldPrice: 300,
@@ -52,19 +52,30 @@ const product: Product = {
   ]
 }
 
-let relatedProducts:TypeProduct[] = [
-    { name: 'Vertical Striped Shirt', price: 212, discount: 22, rating: 5, image: "/images/products/vertical-striped.png", slug: "vertical-striped-shirt", category: "t-shirt" },
-    { name: 'Courage Graphic T-shirt', price: 145, rating: 4.3, image: "/images/products/courage-graphic.png", slug: "courage-graphic-t-shirt", category: "t-shirt" },
-    { name: 'Loose Fit Bermuda Shorts', price: 80, rating: 4, image: "/images/products/loose-fit.png", slug: "loose-fit-bermuda-shorts", category: "shorts" },
-    { name: 'Faded Skinny Jeans', price: 210, rating: 4.5, image: "/images/products/faded-skinny-jeans.png", slug: "faded-skinny-jeans", category: "jeans" },
-  ]
 
-export default function ProductDetail() {
+export default function ProductDetail({ params, }: { params: Promise<{ slug: string }> }) {
+  const [product0, setProduct] = useState<fullProduct>() 
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
   const [selectedSize, setSelectedSize] = useState(product.sizes[2])
   const [quantity, setQuantity] = useState(1)
   const [activeTab, setActiveTab] = useState('details')
   const [mainImage, setMainImage] = useState(product.images[0])
+  const [relatedProducts, setRelatedProducts] = useState<TypeProduct[]>()
+  
+
+  useEffect(() => {
+    const getPageData = async () => {
+      const data = await fetchProductBySlug((await params).slug);
+      setProduct(data);
+      console.log(data);
+
+      const relatedProducts: TypeProduct[] = await fetchproducts("recomended")
+      setRelatedProducts(relatedProducts)
+    };
+
+    
+    getPageData();
+  }, []);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -147,6 +158,7 @@ export default function ProductDetail() {
             <p className="ml-4 text-lg font-medium text-red-500">-{product.discount}%</p>
           </div>
 
+
           <div className="mt-6">
             <h3 className="text-sm font-medium text-gray-900">Color</h3>
             <div className="mt-2 flex items-center space-x-3">
@@ -164,6 +176,7 @@ export default function ProductDetail() {
               ))}
             </div>
           </div>
+          {/* <ProductPrice price={product.price} discount={product.discount} /> */}
 
           <div className="mt-6">
             <h3 className="text-sm font-medium text-gray-900">Size</h3>
