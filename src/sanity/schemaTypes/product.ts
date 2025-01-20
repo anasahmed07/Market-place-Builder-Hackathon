@@ -67,9 +67,7 @@ export default defineType({
                     { title: 'Top Selling', value: 'topselling' },
                     { title: 'Recommended', value: 'recommended' },
                 ]
-            },
-            validation: (Rule) =>
-                Rule.unique().error('Each tag should be unique.'),
+            }
         }),
         defineField({
             name: 'description',
@@ -81,7 +79,7 @@ export default defineType({
             type: 'array',
             title: 'Images',
             of: [{ type: 'image' }],
-            validation: (Rule) => Rule.max(5).warning('You can upload up to 5 images only'),
+            validation: (Rule) => Rule.max(4).warning('You can upload up to 5 images only'),
         }),
         defineField({
             name: 'sizes',
@@ -94,6 +92,19 @@ export default defineType({
             type: 'array',
             title: 'Colors',
             of: [{ type: 'string' }],
+            validation: (Rule) =>
+                Rule.custom((array) => {
+                  if (!array) return true; // Skip validation if the array is empty or undefined
+        
+                  // Check each string in the array
+                  for (const value of array) {
+                    if (typeof value === 'string' && !/^[^"]*$/.test(value)) {
+                      return `Double quotes ("") are not allowed in the tag: "${value}".`;
+                    }
+                  }
+        
+                  return true; // Validation passes
+                }),
         }),
         defineField({
             name: 'rating',

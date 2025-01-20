@@ -27,31 +27,12 @@ export interface Review {
   date: string
 }
 
-export interface RelatedProduct {
-  id: number
-  name: string
-  price: number
-  oldPrice: number
-  rating: number
-  image: string
-}
-
 export interface Discount {
   amount: number;
   percentage: number;
 };
 
-export interface Product {
-  id: number;
-  title: string;
-  srcUrl: string;
-  gallery?: string[];
-  price: number;
-  discount: Discount;
-  rating: number;
-};
-
-export interface fullProduct {
+export interface detailedProductData {
   slug: string
   name: string
   price: number

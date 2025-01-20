@@ -6,7 +6,7 @@ import { Review } from "@/lib/types";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { integralCF, satoshi } from "@/styles/fonts";
 
-export default function ReviewCarousel(prams: { customers: Review[] }) {
+export default function ReviewCarousel(prams: { reviews: Review[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCards, setVisibleCards] = useState(1); // Number of cards visible at a time
 
@@ -23,7 +23,7 @@ export default function ReviewCarousel(prams: { customers: Review[] }) {
     return () => window.removeEventListener("resize", updateVisibleCards);
   }, []);
 
-  const totalSlides = Math.ceil(prams.customers.length / visibleCards); // Total number of slides
+  const totalSlides = Math.ceil(prams.reviews.length / visibleCards); // Total number of slides
 
   const nextSlide = () => { setCurrentIndex((prevIndex) => (prevIndex + 1) % totalSlides); };
   const prevSlide = () => { setCurrentIndex((prevIndex) => (prevIndex - 1 + totalSlides) % totalSlides); };
@@ -47,7 +47,7 @@ export default function ReviewCarousel(prams: { customers: Review[] }) {
           className="flex transition-transform duration-300 ease-in-out"
           style={{ transform: `translateX(-${currentIndex * (100 / visibleCards)}%)` }}
         >
-          {prams.customers.map((review, index) => (
+          {prams.reviews.map((review, index) => (
             <ReviewCard key={index} customerReview={review} />
           ))}
         </div>

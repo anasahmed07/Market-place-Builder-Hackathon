@@ -6,7 +6,7 @@ import { TypeProduct } from "@/lib/types";
 import ReviewCarousel from "@/components/reviewCarausel";
 import { fetchproducts } from "@/lib/utils";
 
-const customers = [
+const reviews = [
   { author: 'Sarah M.', rating: 5, content: "I'm blown away by the quality and style of the clothes I received. From casual to formal, every piece exceeded my expectations!",date:"January 5 2024" },
   { author: 'Alex K.', rating: 5, content: "Finding clothes that align with my personal style used to be a challenge until I discovered Shopco. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",date:"January 5 2024" },
   { author: 'James L.', rating: 5, content: "As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon Shopco. The selection of clothes is not only diverse but also on-point with the latest trends.",date:"January 5 2024" },
@@ -29,7 +29,7 @@ export default async function Home() {
       <ProductCardGroup products={newArrivalProducts} url="new-arrivals" title="NeW ARRIVALS"/>
       <ProductCardGroup products={topSellingProducts} url="top-selling" title="TOP SELLING"/>
       <BrowseByDressStyle />
-      <ReviewCarousel customers={customers} />
+      <ReviewCarousel reviews={reviews} />
     </main>
   );
 }

@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { fullProduct, TypeProduct } from "./types"
+import { detailedProductData, TypeProduct } from "./types"
 import { client } from '@/sanity/lib/client'
 
 export function cn(...inputs: ClassValue[]) {
@@ -8,8 +8,8 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 
-export async function fetchproducts(dressStyle?:string): Promise<TypeProduct[]> {
-  let productQuery =[`*[_type == "product"]{
+export async function fetchproducts(tag?: string): Promise<TypeProduct[]> {
+  let productQuery = [`*[_type == "product"]{
     "slug": slug.current,
     name,
     price,
@@ -18,7 +18,7 @@ export async function fetchproducts(dressStyle?:string): Promise<TypeProduct[]> 
     "image": images[0].asset->url,
     "category": category->name
   }`,
-  `*[_type == "product" && "${dressStyle}" in tag][0...4]{
+    `*[_type == "product" && "${tag}" in tag][0...4]{
     "slug": slug.current,
     name,
     price,
@@ -26,15 +26,15 @@ export async function fetchproducts(dressStyle?:string): Promise<TypeProduct[]> 
     discount,
     "image": images[0].asset->url,
     "category": category->name
-  }`][dressStyle ? 1 : 0]
+  }`][tag ? 1 : 0]
 
-const res = await client.fetch(productQuery)
-const data = await res
-return data
+  const res = await client.fetch(productQuery)
+  const data = await res
+  return data
 }
 
 
-export async function fetchProductBySlug(slug:string): Promise<fullProduct> {
+export async function fetchProductBySlug(slug: string): Promise<detailedProductData> {
   let productQuery = `*[_type == "product" && slug.current == "${slug}"][0] {
   name,
   "slug": slug.current,
@@ -44,19 +44,19 @@ export async function fetchProductBySlug(slug:string): Promise<fullProduct> {
   dressStyle,
   tag,
   description,
-  "images": images[].asset->url,
-  sizes,
-  colors,
+  "images": coalesce(images[].asset->url, []),
+  "sizes": coalesce(sizes, []),
+  "colors": coalesce(colors, []),
   rating,
-  "reviews": reviews[]->{
+  "reviews": coalesce(reviews[]->{
     _id,
     rating,
     comment,
     "author": author->name
-  }
+  }, [])
 }`
 
-const res = await client.fetch(productQuery)
-const data = await res
-return data
+  const res = await client.fetch(productQuery)
+  const data = await res
+  return data
 }
