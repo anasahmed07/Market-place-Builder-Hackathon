@@ -25,7 +25,7 @@ export default function ProductDetailSkeleton() {
               ))}
             </div>
           </div>
-          <div className="col-span-3 w-full bg aspect-w-1 bg-green-100 aspect-h-1">
+          <div className="col-span-3 w-full bg aspect-w-1 aspect-h-1">
             <Skeleton className="w-full h-full rounded-lg" />
           </div>
         </div>
@@ -77,7 +77,7 @@ export default function ProductDetailSkeleton() {
         <div className="border-b border-gray-200">
           <div className="flex justify-evenly">
             {[...Array(3)].map((index) => (
-              <Skeleton key={index} className="h-10 w-36" />
+              <Skeleton key={index} className="h-10 w-36 mb-5" />
             ))}
           </div>
         </div>
@@ -89,8 +89,8 @@ export default function ProductDetailSkeleton() {
       </div>
 
       {/* Related Products Skeleton */}
-      <div className="mt-16">
-        <Skeleton className="h-6 w-48 mb-6" /> {/* Related Products Title */}
+      <div className="mt-16 pt-16 border-t">
+        <Skeleton className="mx-auto h-10 w-3/6 mb-10" /> {/* Related Products Title */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {[...Array(4)].map((_, index) => (
             <div key={index} className="space-y-4">

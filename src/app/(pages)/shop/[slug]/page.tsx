@@ -21,7 +21,7 @@ export default function ProductDetail({ params }: { params: Promise<{ slug: stri
   const [selectedColor, setSelectedColor] = useState<string>('')
   const [selectedSize, setSelectedSize] = useState<string>('')
   const [quantity, setQuantity] = useState(1)
-  const [activeTab, setActiveTab] = useState('details')
+  const [activeTab, setActiveTab] = useState('Product Details')
   const [mainImage, setMainImage] = useState<string>('')
   const [relatedProducts, setRelatedProducts] = useState<TypeProduct[]>([])
   const [isLoading, setIsLoading] = useState(true)
@@ -216,7 +216,7 @@ export default function ProductDetail({ params }: { params: Promise<{ slug: stri
         </div>
 
         <div className="mt-6">
-          {activeTab === 'details' && (
+          {activeTab === 'Product Details' && (
             <div>
               <h3 className="text-lg font-medium text-gray-900">Product Details</h3>
               <p className="mt-4 text-gray-500">
@@ -225,7 +225,7 @@ export default function ProductDetail({ params }: { params: Promise<{ slug: stri
             </div>
           )}
 
-          {activeTab === 'reviews' && (
+          {activeTab === 'Ratings and Reviews' && (
             <div>
               <h3 className="text-lg font-medium text-gray-900">Customer Reviews</h3>
               <div className="mt-6 grid sm:grid-cols-2 md:grid-cols-3 gap-2">
@@ -236,7 +236,7 @@ export default function ProductDetail({ params }: { params: Promise<{ slug: stri
             </div>
           )}
 
-          {activeTab === 'faqs' && (
+          {activeTab === "FAQ's" && (
             <div>
               <h3 className="text-lg font-medium text-gray-900">Frequently Asked Questions</h3>
               <p className="mt-4 text-gray-500">

@@ -36,6 +36,7 @@
     "styled-components": "^6.1.14",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",
+    "use-shopping-cart": "^3.2.0",
     "vaul": "^1.1.1"
   },
   "devDependencies": {
