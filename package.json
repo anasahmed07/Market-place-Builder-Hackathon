@@ -19,6 +19,7 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.68.3",
+    "@stripe/stripe-js": "^5.5.0",
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.7",
     "bcrypt": "^5.1.1",

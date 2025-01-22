@@ -42,8 +42,8 @@ export default function ProductDetail({ params }: { params: Promise<{ slug: stri
 
   useEffect(() => {
     const getRelatedProducts = async () => {
-      const relatedProducts: TypeProduct[] = await fetchproducts('recommended')
-      setRelatedProducts(relatedProducts)
+      const relatedProducts: TypeProduct[] = await fetchproducts()
+      setRelatedProducts(relatedProducts.sort(() => 0.5 - Math.random()).slice(0,4))
     }
     getRelatedProducts()
   }, [])
@@ -70,36 +70,34 @@ export default function ProductDetail({ params }: { params: Promise<{ slug: stri
 
       <div className="grid md:grid-cols-2 md:gap-x-8 md:items-start">
         {/* Image gallery */}
-        <div className="grid grid-rows-4 sm:grid-rows-none sm:grid-cols-4 gap-6">
-          <div className="col-span-1 w-full max-w-2xl mx-auto sm:block lg:max-w-none">
-            <div className="row-span-1 grid grid-rows-3 gap-6" aria-orientation="vertical" role="tablist">
-              {product.images.map((image, index) => (
-                <button
-                  key={index}
-                  className="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer active:border-black"
-                  onClick={() => setMainImage(image)}
-                >
-                  <span className="sr-only">Image {index + 1}</span>
-                  <span className="absolute inset-0 rounded-md overflow-hidden">
-                    <Image src={image} alt="" className="w-full h-full object-center object-cover" width={60} height={60} />
-                  </span>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="col-span-3 w-full bg aspect-w-1 aspect-h-1">
+        <div className="mx-7 grid grid-rows-4 lg:grid-rows-1 lg:grid-cols-4 gap-6">
+          <div className="lg:col-span-3 row-span-3 w-full max-h-[60vh]">
             <Image
               src={mainImage}
               alt={product.name}
-              className="w-full h-full object-center object-cover sm:rounded-lg"
-              width={600}
-              height={600}
+              className="w-full h-full object-center object-cover rounded-lg"
+              width={1200}
+              height={1200}
             />
           </div>
+          <div className="grid grid-cols-4 lg:grid-cols-1 lg:grid-rows-4 w-full max-w-2xl mx-auto row-span-1 gap-6" aria-orientation="vertical" role="tablist">
+            {product.images.map((image, index) => (
+              <button
+                key={index}
+                className="relative md:row-span-1 bg-white rounded-md flex items-center justify-center cursor-pointer active:border-black"
+                onClick={() => setMainImage(image)}
+              >
+                <span className="sr-only">Image {index + 1}</span>
+                <span className="absolute inset-0 rounded-md overflow-hidden">
+                  <Image src={image} alt="" className="w-full h-full object-center aspect-square object-cover" width={160} height={160} />
+                </span>
+              </button>
+            ))}
+          </div>
+
         </div>
         {/* Product info */}
-        <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
+        <div className="px-4 sm:px-0">
           <h1 className={`${integralCF.className} text-4xl font-bold tracking-tight`}>{product.name}</h1>
 
           <div className="mt-3">
