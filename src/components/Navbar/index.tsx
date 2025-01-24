@@ -7,7 +7,8 @@ import {NavigationMenu, NavigationMenuList} from "@/components/ui/navigationMenu
 import { MenuItem } from "./MenuItem";
 import InputGroup from "@/components/ui/inputgroup";
 import ResponsiveTopNavbar from "@/components/Navbar/ResponsiveTopNavbar";
-import { Search,CircleUserRound, ShoppingCart } from "lucide-react";
+import { Search,CircleUserRound } from "lucide-react";
+import CartBtn from "./CartBtn";
 
 const data:NavMenu = [
   {
@@ -114,9 +115,7 @@ const TopNavbar = () => {
             <Link href="#" className="block md:hidden mr-[14px] p-1">
               <Search/>
             </Link>
-            <Link href="/cart" className="relative mr-[14px] p-1">
-              <ShoppingCart/>
-            </Link>
+            <CartBtn/>
             <Link href="/#signin" className="p-1">
               <CircleUserRound className=""/>
             </Link>

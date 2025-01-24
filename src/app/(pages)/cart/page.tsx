@@ -1,15 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Minus, Plus, X } from "lucide-react";
+import { Minus, Plus, ShoppingCart, X } from "lucide-react";
 import { CartItem } from "@/lib/types";
 
 export default function Component() {
-  // const cartItems: CartItem[] = []
-  const cartItems: CartItem[] = [ 
-    { id: 1, name: 'Gradient Graphic T-shirt', price: 145, image: "/images/products/gradient-graphic-t-shirt.png", size: 'Large', color: 'White', quantity: 1 },
-    { id: 2, name: 'Checkered Shirt', price: 180, image: "/images/products/checkerd-shirt.png", size: 'Medium', color: 'Red', quantity: 2 },
-    { id: 3, name: 'Skinny Fit Jeans', price: 240, image: "/images/products/skinny-fit-jeans.png", size: 'Large', color: 'Blue', quantity: 1 },
-  ]
+  const cartItems: CartItem[] = []
+  // const cartItems: CartItem[] = [ 
+  //   { id: 1, name: 'Gradient Graphic T-shirt', price: 145, image: "/images/products/gradient-graphic-t-shirt.png", size: 'Large', color: 'White', quantity: 1 },
+  //   { id: 2, name: 'Checkered Shirt', price: 180, image: "/images/products/checkerd-shirt.png", size: 'Medium', color: 'Red', quantity: 2 },
+  //   { id: 3, name: 'Skinny Fit Jeans', price: 240, image: "/images/products/skinny-fit-jeans.png", size: 'Large', color: 'Blue', quantity: 1 },
+  // ]
 
   const subtotal = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -20,34 +20,16 @@ export default function Component() {
   const total = subtotal - discount + deliveryFee;
   if (cartItems.length === 0) {
     return (
-      <div className="max-w-frame mx-auto px-4 xl:px-0 h-[50vh]">
-        <div className="flex items-center flex-col text-gray-300 mt-32">
-          <svg
-            stroke="currentColor"
-            fill="none"
-            stroke-width="1"
-            viewBox="0 0 24 24"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            className="text-6xl"
-            height="1em"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M17 10l-2 -6"></path>
-            <path d="M7 10l2 -6"></path>
-            <path d="M15 20h-7.756a3 3 0 0 1 -2.965 -2.544l-1.255 -7.152a2 2 0 0 1 1.977 -2.304h13.999a2 2 0 0 1 1.977 2.304l-.36 2.055"></path>
-            <path d="M10 14a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
-            <path d="M19 16v3"></path>
-            <path d="M19 22v.01"></path>
-          </svg>
-          <span className="block mb-4">Your shopping cart is empty.</span>
-          <a
-            className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2 rounded-full w-24"
+      <div className="max-w-frame mx-auto px-4 xl:px-0 h-[80vh]">
+        <div className="flex items-center flex-col space-y-8 mt-32">
+          <ShoppingCart size={100} className="text-gray-300"/>
+          <span className="block mb-4">Did&apos;nt Bought anything yet? Go Checkout our Products!</span>
+          <Link
+            className="inline-flex items-center justify-center text-sm font-medium bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2 rounded-full w-24"
             href="/shop"
           >
             Shop
-          </a>
+          </Link>
         </div>
       </div>
     );
