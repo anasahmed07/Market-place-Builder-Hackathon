@@ -62,3 +62,14 @@ export type MenuListData = (Omit<MenuItem, "children" | "type"> & {
 })[];
 
 export type NavMenu = MenuItem[];
+
+
+export interface CartState {
+  items: CartItem[]
+}
+
+export type CartAction =
+  | { type: 'ADD_TO_CART'; payload: CartItem }
+  | { type: 'REMOVE_FROM_CART'; payload: Omit<CartItem, 'quantity'> }
+  | { type: 'UPDATE_QUANTITY'; payload: CartItem }
+  | { type: 'CLEAR_CART' }  

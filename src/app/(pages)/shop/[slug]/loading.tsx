@@ -10,22 +10,23 @@ export default function ProductDetailSkeleton() {
         <Skeleton className="h-5 w-12" />
         <Skeleton className="h-5 w-2 mx-2" />
         <Skeleton className="h-5 w-36" />
-        {/* <Skeleton className="h-4 w-2 mx-1" />
-        <Skeleton className="h-4 w-24" /> */}
       </div>
 
       {/* Product Grid Skeleton */}
-      <div className="grid  md:grid-cols-2 md:gap-x-8 md:items-start">
+      <div className="grid md:grid-cols-2 md:gap-x-8 md:items-start">
         {/* Image Gallery Skeleton */}
-        <div className="grid grid-rows-4 sm:grid-rows-none sm:grid-cols-4 gap-6">
-          <div className="col-span-1 w-full max-w-2xl mx-auto sm:block lg:max-w-none">
+        <div className="mx-7 grid grid-rows-4 lg:grid-rows-1 lg:grid-cols-4 gap-6">
+          <div className="lg:col-span-3 aspect-square lg:hidden row-span-3 w-full max-h-[60vh">
+            <Skeleton className="w-full h-full rounded-lg" />
+          </div>
+          <div className="grid grid-cols-4 lg:grid-cols-1 lg:grid-rows-4 w-full max-w-2xl mx-auto row-span-1 gap-2 my-px md:gap-6">
             <div className="grid md:grid-rows-4 gap-6">
-              {[...Array(4)].map((_, index) => (
+              {[...Array(3)].map((_, index) => (
                 <Skeleton key={index} className="h-24 max-w-28 rounded-md" />
               ))}
             </div>
           </div>
-          <div className="col-span-3 w-full bg aspect-w-1 aspect-h-1">
+          <div className="lg:col-span-3 aspect-square hidden lg:block row-span-3 w-full max-h-[60vh]">
             <Skeleton className="w-full h-full rounded-lg" />
           </div>
         </div>

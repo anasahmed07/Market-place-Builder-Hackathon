@@ -3,6 +3,7 @@ import Footer from "@/components/footer";
 import TopBanner from "@/components/topBanner";
 import { satoshi } from "@/styles/fonts";
 import TopNavbar from "@/components/Navbar";
+import { CartProvider } from "../../../context/CartContext";
 
 export const metadata: Metadata = {
   title: "SHOP.CO | By Anas Ahmed",
@@ -22,8 +23,10 @@ export default function RootLayout({children,}: Readonly<{ children: React.React
       </head>
       <body className={`${satoshi.className}bg-white max-w-[2000px] mx-auto`}>
         <TopBanner/>
-        <TopNavbar/>
-        {children}
+        <CartProvider>
+          <TopNavbar/>
+          {children}
+        </CartProvider>
         <Footer/>
       </body>
     </html>

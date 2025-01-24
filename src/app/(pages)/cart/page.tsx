@@ -1,10 +1,14 @@
+'use client';
 import Image from "next/image";
 import Link from "next/link";
 import { Minus, Plus, ShoppingCart, X } from "lucide-react";
 import { CartItem } from "@/lib/types";
+import { useCart } from "../../../../context/CartContext";
 
 export default function Component() {
-  const cartItems: CartItem[] = []
+  const { state } = useCart();
+  const cartItems: CartItem[] = state.items;
+  console.log(cartItems);
   // const cartItems: CartItem[] = [ 
   //   { id: 1, name: 'Gradient Graphic T-shirt', price: 145, image: "/images/products/gradient-graphic-t-shirt.png", size: 'Large', color: 'White', quantity: 1 },
   //   { id: 2, name: 'Checkered Shirt', price: 180, image: "/images/products/checkerd-shirt.png", size: 'Medium', color: 'Red', quantity: 2 },
@@ -23,9 +27,9 @@ export default function Component() {
       <div className="max-w-frame mx-auto px-4 xl:px-0 h-[80vh]">
         <div className="flex items-center flex-col space-y-8 mt-32">
           <ShoppingCart size={100} className="text-gray-300"/>
-          <span className="block mb-4">Did&apos;nt Bought anything yet? Go Checkout our Products!</span>
+          <span className="block mb-4">Did&apos;nt Bought anything yet? Checkout our Products!</span>
           <Link
-            className="inline-flex items-center justify-center text-sm font-medium bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2 rounded-full w-24"
+            className="inline-flex items-center justify-center text-sm font-medium bg-primary text-primary-foreground shadow hover:bg-black h-9 px-4 py-2 rounded-full w-24"
             href="/shop"
           >
             Shop

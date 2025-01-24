@@ -1,7 +1,7 @@
 'use client'
 import type React from "react"
 import { createContext, useContext, useReducer, useEffect } from "react"
-import type { CartItem, CartAction, CartState } from "@/types/cart"
+import type { CartItem, CartAction, CartState } from "@/lib/types"
 
 const CartContext = createContext<
   | {
