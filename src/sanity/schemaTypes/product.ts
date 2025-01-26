@@ -33,9 +33,14 @@ export default defineType({
         }),
         defineField({
             name: 'category',
-            type: 'reference',
             title: 'Category',
-            to: [{ type: 'category' }],
+            type: 'array',
+            of: [
+                {
+                    type: 'reference',
+                    to: [{ type: 'category' }],
+                },
+            ],
             validation: (Rule) => Rule.required(),
         }),
         defineField({
@@ -79,7 +84,7 @@ export default defineType({
             type: 'array',
             title: 'Images',
             of: [{ type: 'image' }],
-            validation: (Rule) => Rule.max(4).warning('You can upload up to 5 images only'),
+            validation: (Rule) => Rule.min(1).error('image is required').max(4).warning('You can upload up to 5 images only'),
         }),
         defineField({
             name: 'sizes',
@@ -102,7 +107,6 @@ export default defineType({
                       return `Double quotes ("") are not allowed in the tag: "${value}".`;
                     }
                   }
-        
                   return true; // Validation passes
                 }),
         }),
@@ -118,6 +122,35 @@ export default defineType({
             title: 'Reviews',
             of: [{ type: 'reference', to: [{ type: 'review' }] }],
         }),
+        defineField({
+            name: 'productDetails',
+            title: 'Product Details',
+            type: 'array',
+            of: [{ type: 'string' }],
+            validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+            name: 'faqs',
+            title: 'FAQs',
+            type: 'array',
+            of: [{
+              type: 'object',
+              fields: [
+                {
+                  name: 'question',
+                  title: 'Question',
+                  type: 'string',
+                  validation: (Rule) => Rule.required()
+                },
+                {
+                  name: 'answer',
+                  title: 'Answer',
+                  type: 'text',
+                  validation: (Rule) => Rule.required()
+                }
+              ]
+            }]
+          }),
     ],
     preview: {
         select: {

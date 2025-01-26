@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { detailedProductData, TypeProduct } from "./types"
+import { CartAction, CartItem, detailedProductData, TypeProduct } from "./types"
 import { client } from '@/sanity/lib/client'
 
 export function cn(...inputs: ClassValue[]) {
@@ -35,12 +35,12 @@ export async function fetchproducts(tag?: string): Promise<TypeProduct[]> {
 
 
 export async function fetchProductBySlug(slug: string): Promise<detailedProductData> {
-  let productQuery = `*[_type == "product" && slug.current == "${slug}"][0] {
+  let productQuery = `*[_type == "product" && slug.current == $slug][0] {
   name,
   "slug": slug.current,
   price,
   discount,
-  "category": category->name,
+  "category": category[]->name, // Fetching array of category names
   dressStyle,
   tag,
   description,
@@ -53,10 +53,32 @@ export async function fetchProductBySlug(slug: string): Promise<detailedProductD
     rating,
     comment,
     "author": author->name
-  }, [])
-}`
+  }, []),
+  "faqs": coalesce(faqs[] {
+    question,
+    answer
+  }, []),
+  "productDetails": coalesce(productDetails, [])
+}
+`
 
-  const res = await client.fetch(productQuery)
+  const res = await client.fetch(productQuery, { slug })
   const data = await res
   return data
+}
+
+export const addToCart = (dispatch: React.Dispatch<CartAction>, item: CartItem) => {
+  dispatch({ type: 'ADD_TO_CART', payload: item })
+}
+
+export const removeFromCart = (dispatch: React.Dispatch<CartAction>, item: Omit<CartItem, 'quantity'>) => {
+  dispatch({ type: 'REMOVE_FROM_CART', payload: item })
+}
+
+export const updateQuantity = (dispatch: React.Dispatch<CartAction>, item: CartItem) => {
+  dispatch({ type: 'UPDATE_QUANTITY', payload: item })
+}
+
+export const clearCart = (dispatch: React.Dispatch<CartAction>) => {
+  dispatch({ type: 'CLEAR_CART' })
 }

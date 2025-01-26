@@ -1,7 +1,8 @@
 'use client';
-import {ShoppingCart} from "lucide-react"
+
 import Link from "next/link";
-import { useCart } from "../../../context/CartContext";
+import {ShoppingCart} from "lucide-react"
+import { useCart } from "@/context/CartContext";
 
 const CartBtn = () => {
 const { state } = useCart();

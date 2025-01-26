@@ -1,7 +1,7 @@
 import { StaticImageData } from "next/image";
 
 export interface CartItem {
-  id: number;
+  id: string;
   name: string;
   price: number;
   image: string | StaticImageData;
@@ -32,6 +32,11 @@ export interface Discount {
   percentage: number;
 };
 
+export interface Faqs {
+  question: string
+  answer: string
+}
+
 export interface detailedProductData {
   slug: string
   name: string
@@ -43,6 +48,8 @@ export interface detailedProductData {
   sizes: string[]
   images: string[]
   reviews: Review[]
+  faqs: Faqs[]
+  productDetails: string[]
 }
 
 export type MenuItem = {

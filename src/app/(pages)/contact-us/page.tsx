@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Send, Phone, Mail, MapPin } from 'lucide-react'
+import { integralCF, satoshi } from "@/styles/fonts";
 
 export default function ContactUs() {
   const [name, setName] = useState('')
@@ -20,12 +21,12 @@ export default function ContactUs() {
   }
 
   return (
-      <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 mb-24">
+      <div className={`${satoshi.variable} text-gray-800 max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 mb-24`}>
         <div className="max-w-lg mx-auto md:max-w-none md:grid md:grid-cols-2 md:gap-8">
           <div>
-            <h2 className="text-2xl font-extrabold text-gray-900 sm:text-3xl">Get in touch</h2>
-            <div className="mt-3">
-              <p className="text-lg text-gray-500">
+            <h2 className={`${integralCF.className} text-2xl font-extrabold text-gray-900 sm:text-3xl`}>Get in touch</h2>
+            <div className="mt-4">
+              <p className={"text-lg py-5 text-gray-800"}>
                 We're here to help and answer any question you might have. We look forward to hearing from you.
               </p>
             </div>
@@ -34,7 +35,7 @@ export default function ContactUs() {
                 <div className="flex-shrink-0">
                   <Phone className="h-6 w-6 text-gray-400" aria-hidden="true" />
                 </div>
-                <div className="ml-3 text-base text-gray-500">
+                <div className={" ml-3 text-lg text-gray-800"}>
                   <p>+1 (555) 123-4567</p>
                   <p className="mt-1">Mon-Fri 9am to 6pm EST</p>
                 </div>
@@ -43,7 +44,7 @@ export default function ContactUs() {
                 <div className="flex-shrink-0">
                   <Mail className="h-6 w-6 text-gray-400" aria-hidden="true" />
                 </div>
-                <div className="ml-3 text-base text-gray-500">
+                <div className="ml-3 text-base">
                   <p>support@shop.co</p>
                 </div>
               </div>
@@ -51,7 +52,7 @@ export default function ContactUs() {
                 <div className="flex-shrink-0">
                   <MapPin className="h-6 w-6 text-gray-400" aria-hidden="true" />
                 </div>
-                <div className="ml-3 text-base text-gray-500">
+                <div className="ml-3 text-base">
                   <p>123 Fashion Street</p>
                   <p className="mt-1">New York, NY 10001</p>
                 </div>
@@ -59,7 +60,7 @@ export default function ContactUs() {
             </div>
           </div>
           <div className="mt-12 sm:mt-16 md:mt-0">
-            <h2 className="text-2xl font-extrabold text-gray-900 sm:text-3xl">Send us a message</h2>
+            <h2 className={`${integralCF.className} text-2xl font-extrabold text-gray-800 sm:text-3xl`}>Send us a message</h2>
             {submitted ? (
               <div className="mt-6 bg-green-50 border border-green-200 rounded-md p-4">
                 <div className="flex">
@@ -91,7 +92,7 @@ export default function ContactUs() {
                       required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                      className="py-3 px-4 block w-full shadow-md rounded-lg"
                     />
                   </div>
                 </div>
@@ -108,7 +109,7 @@ export default function ContactUs() {
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                      className="py-3 px-4 block w-full shadow-md rounded-lg"
                     />
                   </div>
                 </div>
@@ -124,14 +125,14 @@ export default function ContactUs() {
                       required
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      className="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                      className="py-3 px-4 block w-full shadow-md rounded-lg"
                     />
                   </div>
                 </div>
                 <div className="sm:col-span-2">
                   <button
                     type="submit"
-                    className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-full shadow-sm text-base font-medium text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                   >
                     Send Message
                     <Send className="ml-3 -mr-1 h-5 w-5" aria-hidden="true" />

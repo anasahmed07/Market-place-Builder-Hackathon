@@ -62,6 +62,12 @@ export default defineType({
       type: "boolean",
       initialValue: true,
     }),
+    defineField({
+      name: "givenReviews",
+      title: "Given Reviews",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "review" }] }],
+    }),
   ],
   preview: {
     select: {

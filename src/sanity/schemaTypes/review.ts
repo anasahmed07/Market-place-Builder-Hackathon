@@ -6,11 +6,10 @@ export default defineType({
   title: 'Review',
   fields: [
     defineField({
-      name: 'customer',
-      type: 'reference',
-      title: 'Customer',
-      to: [{ type: 'customer' }],
-      validation: (Rule) => Rule.required(),
+      name: "brandReview",
+      title: "Mark as Brand Review",
+      type: "boolean",
+      initialValue: false,
     }),
     defineField({
       name: 'product',
@@ -18,6 +17,18 @@ export default defineType({
       title: 'Product',
       to: [{ type: 'product' }],
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'reviewer',
+      title: 'Reviewer Name',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'email',
+      title: 'Email',
+      type: 'string',
+      validation: (Rule) => Rule.required().email(),
     }),
     defineField({
       name: 'rating',
@@ -29,6 +40,12 @@ export default defineType({
       name: 'comment',
       type: 'text',
       title: 'Comment',
+    }),
+    defineField({
+      name: 'createdAt',
+      title: 'Created At',
+      type: 'datetime',
+      validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {

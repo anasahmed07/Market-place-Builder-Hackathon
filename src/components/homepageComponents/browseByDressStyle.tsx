@@ -5,7 +5,7 @@ import { integralCF } from "@/styles/fonts"
 export default function BrowseByDressStyle() {
 
     return (
-        <div className={`${integralCF.variable} bg-gray-100 py-8 w-full max-w-[90vw] mx-auto rounded-3xl px-4 sm:px-6 lg:px-8 mb-10`}>
+        <div className={`${integralCF.variable} bg-gray-100 py-8 w-full max-w-7xl mx-auto rounded-3xl px-4 sm:px-6 lg:px-8 mb-10`}>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl text-center font-extrabold text-black mb-8">BROWSE BY DRESS STYLE</h2>
             <div className="grid grid-cols-1 sm:grid-rows-2 sm:grid-cols-5 gap-4 px-4 sm:px-2">
                 <Link href="/shop/casual" className="sm:col-span-2">

@@ -8,7 +8,7 @@ interface ProductPriceProps {
 export default function (props: ProductPriceProps) {
     if (!props.discount) {
         return (
-            <span className={props.pdp?`text-2xl font-bold text-gray-900`:`text-lg font-bold text-gray-900`}>${ props.price }</span>
+            <span className={props.pdp?`my-9 text-2xl font-bold text-gray-900`:`text-lg font-bold text-gray-900`}>${ props.price }</span>
         )
     }
     else {
