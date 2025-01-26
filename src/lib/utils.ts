@@ -16,7 +16,7 @@ export async function fetchproducts(tag?: string): Promise<TypeProduct[]> {
     rating,
     discount,
     "image": images[0].asset->url,
-    "category": category->name
+    "categories": category[]->name,
   }`,
     `*[_type == "product" && "${tag}" in tag][0...4]{
     "slug": slug.current,
@@ -25,7 +25,7 @@ export async function fetchproducts(tag?: string): Promise<TypeProduct[]> {
     rating,
     discount,
     "image": images[0].asset->url,
-    "category": category->name
+    "categories": category[]->name,
   }`][tag ? 1 : 0]
 
   const res = await client.fetch(productQuery)
@@ -40,7 +40,7 @@ export async function fetchProductBySlug(slug: string): Promise<detailedProductD
   "slug": slug.current,
   price,
   discount,
-  "category": category[]->name, // Fetching array of category names
+  "category": category[]->name,
   dressStyle,
   tag,
   description,

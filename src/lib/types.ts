@@ -17,7 +17,7 @@ export interface TypeProduct {
   discount?: number
   rating: number
   image: string
-  category: string
+  categories: string[]
 }
 
 export interface Review {

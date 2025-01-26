@@ -17,18 +17,21 @@ export default function ShopPage() {
 
   useEffect(() => {
     const getProducts = async () => {
-      const data = await fetchproducts();
-      setproducts(data);
+      try {
+        const data = await fetchproducts();
+        setproducts(data);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      }
     };
-    
+
     getProducts();
   }, []);
 
-  const categories = ['All', ...Array.from(new Set(products.map(product => product.category)))];
-
+  const categories = ['All', ...Array.from(new Set(products.flatMap(item => item.categories)))];
 
   const filteredProducts = products
-    .filter(product => selectedCategory === 'All' || product.category === selectedCategory)
+    .filter(product => selectedCategory === 'All' || product.categories.includes(selectedCategory))
     .filter(product => product.price >= priceRange[0] && product.price <= priceRange[1])
 
   const sortedProducts = [...filteredProducts].sort((a, b) => {
