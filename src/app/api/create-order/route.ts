@@ -158,15 +158,15 @@ export async function POST(req: NextRequest) {
 //       throw new Error("Failed to create order in Sanity")
 //     }
 
-//     return NextResponse.json(
-//       {
-//         success: true,
-//         orderId: sanityOrder._id,
-//         trackingNumber: trackingInfo.tracking_number,
-//         status: mapShipEngineStatus(trackingInfo.status_code),
-//       },
-//       { status: 201 },
-//     )
+    return NextResponse.json(
+      {
+        success: true,
+        // orderId: sanityOrder._id,
+        // trackingNumber: trackingInfo.tracking_number,
+        // status: mapShipEngineStatus(trackingInfo.status_code),
+      },
+      { status: 201 },
+    )
 //   } catch (error: any) {
 //     console.error("Error in order creation process:", error)
 
