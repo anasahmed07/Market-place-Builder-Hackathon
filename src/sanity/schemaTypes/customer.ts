@@ -12,13 +12,21 @@ export default defineType({
       validation: (Rule) => Rule.required().min(2).error("Name must be at least 2 characters long."),
     }),
     defineField({
+      name: "userImage",
+      title: "Customer Image",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
       name: "email",
       title: "Email",
       type: "string",
       validation: (Rule) =>
         Rule.required()
           .email()
-          .error("Please enter a valid email address."),
+          .error("Invalid email address."),
     }),
     defineField({
       name: "password",
@@ -33,7 +41,7 @@ export default defineType({
       validation: (Rule) =>
         Rule.custom((phone) => {
           if (phone && !/^\+?[1-9]\d{1,14}$/.test(phone)) {
-            return "Enter a valid phone number.";
+            return "Invalid phone number.";
           }
           return true;
         }),
@@ -41,13 +49,27 @@ export default defineType({
     defineField({
       name: "address",
       title: "Address",
-      type: "object",
-      fields: [
-        { name: "street", title: "Street", type: "string" },
-        { name: "city", title: "City", type: "string" },
-        { name: "state", title: "State", type: "string" },
-        { name: "zip", title: "Zip Code", type: "string" },
-      ],
+      type: "string",
+    }),
+    defineField({
+      name: "street",
+      title: "Street",
+      type: "string",
+    }),
+    defineField({
+      name: "city",
+      title: "City",
+      type: "string",
+    }),
+    defineField({
+      name: "state",
+      title: "State",
+      type: "string",
+    }),
+    defineField({
+      name: "zipCode",
+      title: "Zip Code",
+      type: "string",
     }),
     defineField({
       name: "createdAt",
@@ -73,6 +95,7 @@ export default defineType({
     select: {
       title: "name",
       subtitle: "email",
+      media: "userImage",
     },
   },
 });

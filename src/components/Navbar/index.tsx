@@ -3,14 +3,15 @@ import { cn } from "@/lib/utils";
 import { integralCF } from "@/styles/fonts";
 import { NavMenu } from "@/lib/types";
 import { MenuList } from "./MenuList";
-import {NavigationMenu, NavigationMenuList} from "@/components/ui/navigationMenu";
+import { NavigationMenu, NavigationMenuList } from "@/components/ui/navigationMenu";
 import { MenuItem } from "./MenuItem";
 import InputGroup from "@/components/ui/inputgroup";
 import ResponsiveTopNavbar from "@/components/Navbar/ResponsiveTopNavbar";
-import { Search,CircleUserRound } from "lucide-react";
+import { Search, CircleUserRound } from "lucide-react";
 import CartBtn from "./CartBtn";
+import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
 
-const data:NavMenu = [
+const data: NavMenu = [
   {
     id: 1,
     label: "Shop",
@@ -72,7 +73,7 @@ const TopNavbar = () => {
         <div className="flex">
           <div className="flex items-center">
             <div className="block md:hidden mr-4 ">
-              <ResponsiveTopNavbar/>
+              <ResponsiveTopNavbar />
             </div>
             <Link
               href="/"
@@ -102,7 +103,7 @@ const TopNavbar = () => {
         <div className="flex">
           <InputGroup className="hidden md:flex 2xl:w-[45rem] xl:w-96 w-auto bg-[#F0F0F0] mr-3 lg:mr-10">
             <InputGroup.Text>
-              <Search/>
+              <Search />
             </InputGroup.Text>
             <InputGroup.Input
               type="search"
@@ -112,12 +113,37 @@ const TopNavbar = () => {
             />
           </InputGroup>
           <div className="flex  items-center">
-            <Link href="#" className="block md:hidden mr-[14px] p-1">
-              <Search/>
-            </Link>
-            <CartBtn/>
-            <Link href="/#signin" className="p-1">
-              <CircleUserRound className=""/>
+            <Sheet>
+              <SheetTrigger asChild>
+                <Search className="md:hidden size-8 mr-[14px] p-1" />
+              </SheetTrigger>
+              <SheetContent side="right" className="overflow-y-auto bg-white">
+                <SheetHeader className="mb-10">
+                  <SheetTitle asChild>
+                    <SheetClose asChild>
+                      <Link href="/" className={`${integralCF.className} text-2xl`}>
+                        SHOP.CO
+                      </Link>
+                    </SheetClose>
+                  </SheetTitle>
+                </SheetHeader>
+                <InputGroup className="flex 2xl:w-[45rem] xl:w-96 w-auto bg-[#F0F0F0] mr-3 lg:mr-10">
+                  <InputGroup.Text>
+                    <Search />
+                  </InputGroup.Text>
+                  <InputGroup.Input
+                    type="search"
+                    name="search"
+                    placeholder="Search for products..."
+                    className="bg-transparent placeholder:text-black/40"
+                  />
+                </InputGroup>
+
+              </SheetContent>
+            </Sheet>
+            <CartBtn />
+            <Link href="/auth" className="p-1">
+              <CircleUserRound className="" />
             </Link>
           </div>
         </div>

@@ -8,7 +8,7 @@ export default function BrowseByDressStyle() {
         <div className={`${integralCF.variable} bg-gray-100 py-8 w-full max-w-7xl mx-auto rounded-3xl px-4 sm:px-6 lg:px-8 mb-10`}>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl text-center font-extrabold text-black mb-8">BROWSE BY DRESS STYLE</h2>
             <div className="grid grid-cols-1 sm:grid-rows-2 sm:grid-cols-5 gap-4 px-4 sm:px-2">
-                <Link href="/shop/casual" className="sm:col-span-2">
+                <Link href="/shop#casual" className="sm:col-span-2">
                     <div className="relative overflow-hidden rounded-2xl bg-white">
                         <Image
                             src="/images/dressStyle/casual.png"
@@ -22,7 +22,7 @@ export default function BrowseByDressStyle() {
                         </div>
                     </div>
                 </Link>
-                <Link href="/shop/formal" className="sm:col-span-3">
+                <Link href="/shop#formal" className="sm:col-span-3">
                     <div className="relative overflow-hidden rounded-2xl bg-white">
                         <Image
                             src="/images/dressStyle/formal.png"
@@ -36,7 +36,7 @@ export default function BrowseByDressStyle() {
                         </div>
                     </div>
                 </Link>
-                <Link href="/shop/party" className="sm:col-span-3">
+                <Link href="/shop#party" className="sm:col-span-3">
                     <div className="relative overflow-hidden rounded-2xl bg-white">
                         <Image
                             src="/images/dressStyle/party.png"
@@ -50,7 +50,7 @@ export default function BrowseByDressStyle() {
                         </div>
                     </div>
                 </Link>
-                <Link href="/shop/gym" className="sm:col-span-2">
+                <Link href="/shop#gym" className="sm:col-span-2">
                     <div className="relative overflow-hidden rounded-2xl bg-white">
                         <Image
                             src="/images/dressStyle/gym.png"

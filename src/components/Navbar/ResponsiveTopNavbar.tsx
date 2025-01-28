@@ -89,7 +89,7 @@ const ResponsiveTopNavbar = () => {
                 </SheetClose>
               )}
               {item.type === "MenuList" && (
-                <div className="mb-4 w-full">
+                <div className="w-full">
                   <Accordion type="single" collapsible>
                     <AccordionItem value={item.label} className="border-none">
                       <AccordionTrigger className="text-left p-0 py-0.5 font-normal text-base">

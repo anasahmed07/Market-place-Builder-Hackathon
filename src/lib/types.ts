@@ -37,6 +37,12 @@ export interface Faqs {
   answer: string
 }
 
+export interface detailsTabData {
+  productDetails: string[]
+  reviews: Review[]
+  faqs: Faqs[]
+}
+
 export interface detailedProductData {
   slug: string
   name: string
@@ -80,3 +86,31 @@ export type CartAction =
   | { type: 'REMOVE_FROM_CART'; payload: Omit<CartItem, 'quantity'> }
   | { type: 'UPDATE_QUANTITY'; payload: CartItem }
   | { type: 'CLEAR_CART' }  
+
+
+
+  export interface ShippingAddress {
+    name: string
+    phone: string
+    addressLine1: string
+    addressLine2?: string
+    cityLocality: string
+    stateProvince: string
+    postalCode: string
+    countryCode: string
+    addressResidentialIndicator: "yes" | "no"
+  }
+  
+  export interface PackageDetails {
+    weight: {
+      value: number
+      unit: "pound" | "ounce" | "gram" | "kilogram"
+    }
+    dimensions: {
+      height: number
+      width: number
+      length: number
+      unit: "inch" | "centimeter"
+    }
+  }
+  

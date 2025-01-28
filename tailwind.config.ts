@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+		screens:{
+			ssm:"410px",
+		},
   		colors: {
   			first: '#f0f0f0',
   			background: 'hsl(var(--background))',

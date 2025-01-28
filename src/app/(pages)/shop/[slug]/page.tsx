@@ -43,7 +43,7 @@ export default function ProductDetail({ params }: { params: Promise<{ slug: stri
       </nav>
 
       <ProductDetails product={product}/>
-      <ProductDetailPageTabs Faqs={product.faqs} productDetails={product.productDetails} reviews={product.reviews}/>
+      <ProductDetailPageTabs faqs={product.faqs} productDetails={product.productDetails} reviews={product.reviews}/>
       <RelatedProducts/>
     </div>
   )

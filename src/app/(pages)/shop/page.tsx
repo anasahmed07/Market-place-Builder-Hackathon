@@ -9,7 +9,7 @@ import { TypeProduct } from '@/lib/types'
 
 
 export default function ShopPage() {
-  const [priceRange, setPriceRange] = useState([0, 300])
+  const [priceRange, setPriceRange] = useState([0, 1000])
   const [currentPage, setCurrentPage] = useState(1)
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [sortBy, setSortBy] = useState('featured')
@@ -86,7 +86,7 @@ export default function ShopPage() {
               <input
                 type="range"
                 min="0"
-                max="300"
+                max="1000"
                 value={priceRange[1]}
                 onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
                 className="w-full"
@@ -154,10 +154,10 @@ export default function ShopPage() {
               <input
                 type="range"
                 min="0"
-                max="300"
+                max="1000"
                 value={priceRange[1]}
                 onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
-                className="w-full"
+                className="w-full in-range:bg-black"
               />
               <div className="flex justify-between text-sm text-gray-500">
                 <span>${priceRange[0]}</span>
@@ -209,7 +209,7 @@ export default function ShopPage() {
           </div>
 
           {/* Product Grid */}
-          <div className="flex flex-wrap justify-around">
+          <div className="grid grid-cols-1 ssm:grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
             {displayedProducts.map((product) => (
               <ProductCard key={product.slug} {...product} />
             ))}
