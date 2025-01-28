@@ -1,4 +1,4 @@
-// import { type NextRequest, NextResponse } from "next/server"
+import { type NextRequest, NextResponse } from "next/server"
 // import { client } from "@/sanity/lib/client"
 // import {
 //   getShippingRates,
@@ -10,7 +10,7 @@
 // import type { ShippingAddress, PackageDetails } from "@/types/shipping"
 // import type { Order, Customer, OrderItem } from "@/types/order"
 
-// export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest) {
 //   try {
 //     const { customer, items, totalAmount } = await req.json()
 //     console.log("Received order data:", { customer, items, totalAmount })
@@ -179,5 +179,5 @@
 //       { status: 500 },
 //     )
 //   }
-// }
+}
 
