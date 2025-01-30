@@ -8,6 +8,9 @@ import { satoshi } from "@/styles/fonts";
 import { cn } from "@/lib/utils";
 import { removeFromCart, updateQuantity } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
+import ProductPrice from "@/components/productPrice";
+import { ToastAction } from "@/components/ui/toast";
+import { Button } from "@/components/ui/button";
 
 export default function Component() {
   const { dispatch, state } = useCart();
@@ -18,13 +21,22 @@ export default function Component() {
     0
   );
 
-  const discount = subtotal * 0.2;
+  const discount =   cartItems.reduce(
+      (sum, item) => sum + (item.price * item.quantity * (item.discount ?? 0)) / 100,
+      0
+    );
+
   const deliveryFee = 15;
   const total = subtotal - discount + deliveryFee;
   const formatPrice = (price: number) => price.toFixed(2)
 
-  const handleRemoveItem = (id: string, color: string, size: string) => {
-    removeFromCart(dispatch, { id: String(id), name: '', price: 0, image: '', color, size })
+  const handleRemoveItem = (item:CartItem) => {
+    removeFromCart(dispatch, { id: String(item.id), name: '', price: 0, image: '', color: String(item.color), size: String(item.size) })
+    toast({
+      title: "Removed",
+      description: `${item.quantity +" "+ item.name} was removed from your cart`,
+      action: <ToastAction altText="view cart"><Button >Undo</Button></ToastAction>,
+    })
   }
 
   const handleUpdateQuantity = (id: string, color: string, size: string, newQuantity: number) => {
@@ -89,11 +101,7 @@ export default function Component() {
                       </div>
                     </div>
                     <button
-                      onClick={() => { handleRemoveItem(item.id.toString(), item.color, item.size)
-                        toast({
-                          title: "Removed",
-                          description: `${item.quantity +" "+ item.name} was removed from your cart`
-                        })
+                      onClick={() => { handleRemoveItem(item)
                        }}
                       className="text-gray-400 hover:text-gray-500"
                     >
@@ -101,7 +109,7 @@ export default function Component() {
                     </button>
                   </div>
                   <div className="flex justify-between items-center mt-4">
-                    <p className={cn("text-lg font-medium", satoshi.className)}>${item.price}</p>
+                    <ProductPrice price={item.price} discount={item.discount}/>
                     <div className="flex items-center border rounded-full">
                       <button
                         onClick={() => handleUpdateQuantity(item.id.toString(), item.color, item.size, item.quantity - 1)}
@@ -134,12 +142,12 @@ export default function Component() {
                 <span className="font-medium">${formatPrice(subtotal)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Discount</span>
-                <span className="text-red-500">-${formatPrice(discount)}</span>
-              </div>
-              <div className="flex justify-between">
                 <span className="text-gray-600">Delivery Fee</span>
                 <span className="font-medium">${formatPrice(deliveryFee)}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-600">Discount</span>
+                <span className="text-red-500">-${formatPrice(discount)}</span>
               </div>
               <div className="h-px bg-gray-200 my-4" />
               <div className="flex justify-between text-lg font-medium">

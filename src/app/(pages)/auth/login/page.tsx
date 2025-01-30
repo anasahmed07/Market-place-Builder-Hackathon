@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { toast } from "@/hooks/use-toast";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useRouter } from 'next/navigation';
 
 const loginSchema = z.object({
@@ -68,7 +68,8 @@ export default function Login() {
   }
 
   return (
-    <Card>
+    <div className='flex justify-center items-center pt-10 pb-52'>
+    <Card className='w-full mx-3 md:w-[500px]'>
       <CardHeader>
         <CardTitle>Login</CardTitle>
         <CardDescription>Access your account</CardDescription>
@@ -109,5 +110,6 @@ export default function Login() {
         </Form>
       </CardContent>
     </Card>
+    </div>
   );
 }

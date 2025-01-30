@@ -2,6 +2,7 @@ import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { CartAction, CartItem, detailedProductData, TypeProduct } from "./types"
 import { client } from '@/sanity/lib/client'
+import { groq } from "next-sanity"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -66,6 +67,33 @@ export async function fetchProductBySlug(slug: string): Promise<detailedProductD
   const data = await res
   return data
 }
+
+
+export async function searchProducts(query: string) {
+  const products = await client.fetch(
+    `*[
+      _type == "product" &&
+      (
+        name match "${query}" || 
+        description match "${query}" || 
+        tag[] match "${query}" ||
+        category[]->title match "${query}"
+      )
+    ] {
+      name,
+      price,
+      "slug": slug.current,
+      "categories": category[]->title,
+      dressStyle,
+      tag,
+      images[0],
+      rating
+    }`
+  );
+
+  return products;
+}
+
 
 export const addToCart = (dispatch: React.Dispatch<CartAction>, item: CartItem) => {
   dispatch({ type: 'ADD_TO_CART', payload: item })

@@ -37,7 +37,7 @@ export default function ImageGallery({ images }: { images: StaticImageData[] | s
             <Image
               src={mainImage}
               alt="main product image"
-              className="w-full h-full object-center object-cover rounded-lg"
+              className="w-full h-full border border-gray-100 object-center object-cover rounded-lg"
               width={1200}
               height={1200}
               
