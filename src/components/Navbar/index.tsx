@@ -142,7 +142,7 @@ const TopNavbar = () => {
               </SheetContent>
             </Sheet>
             <CartBtn />
-            <Link href="/auth" className="p-1">
+            <Link href="/auth/login" className="p-1">
               <CircleUserRound className="" />
             </Link>
           </div>
