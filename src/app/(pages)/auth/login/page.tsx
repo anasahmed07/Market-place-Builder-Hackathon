@@ -1,15 +1,16 @@
-'use client'
+'use client';
 
 import { useState } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { toast } from "@/hooks/use-toast";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { useRouter } from 'next/navigation';
+import { toast } from '@/hooks/use-toast';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import Link from 'next/link';
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -18,7 +19,9 @@ const loginSchema = z.object({
 
 export default function Login() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
+  const refUrl = searchParams.get('ref') || '/';
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -46,14 +49,12 @@ export default function Login() {
         throw new Error(data.error || 'Login failed. Please try again.');
       }
 
-      // Display success toast
       toast({
         title: 'Login Successful',
-        description: 'You are now logged in. Redirecting to Home',
+        description: 'You are now logged in. Redirecting...'
       });
 
-      router.push('/');
-
+      router.push(`/${refUrl}`);
     } catch (error) {
       console.error('Error during login:', error);
 
@@ -69,47 +70,50 @@ export default function Login() {
 
   return (
     <div className='flex justify-center items-center pt-10 pb-52'>
-    <Card className='w-full mx-3 md:w-[500px]'>
-      <CardHeader>
-        <CardTitle>Login</CardTitle>
-        <CardDescription>Access your account</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input placeholder="john@example.com" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input type="password" placeholder="Enter your password" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? 'Logging In...' : 'Login'}
-            </Button>
-          </form>
-        </Form>
-      </CardContent>
-    </Card>
+      <Card className='w-full mx-3 md:w-[500px]'>
+        <CardHeader>
+          <CardTitle>Login</CardTitle>
+          <CardDescription>Access your account</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input placeholder="john@example.com" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input type="password" placeholder="Enter your password" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" className="w-full" disabled={isLoading}>
+                {isLoading ? 'Logging In...' : 'Login'}
+              </Button>
+            </form>
+          </Form>
+        </CardContent>
+        <CardFooter className='text-center'>
+          New user ? <Link className='pl-1 underline hover:text-blue-600' href={"/auth/signup"}>SignIn</Link>
+        </CardFooter>
+      </Card>
     </div>
   );
 }

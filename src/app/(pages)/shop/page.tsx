@@ -49,6 +49,13 @@ export default function ShopPage() {
     currentPage * productsPerPage
   )
 
+  const scroolToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pb-48">
       <h1 className="flex justify-between md:block text-3xl font-bold mb-8"><span>Shop</span><span className='md:hidden'>
@@ -219,12 +226,10 @@ export default function ShopPage() {
           <div className="flex justify-between items-center mt-8">
             <button
               className="flex items-center text-sm"
-              onClick={() => {setCurrentPage(prev => Math.max(prev - 1, 1));
-                window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-              });
-            }}
+              onClick={() => {
+                setCurrentPage(prev => Math.max(prev - 1, 1));
+                scroolToTop();
+              }}
               disabled={currentPage === 1}
             >
               <ChevronLeft className="mr-1 h-4 w-4" /> Previous
@@ -236,10 +241,7 @@ export default function ShopPage() {
                   className={`w-8 h-8 flex items-center justify-center rounded-full ${index + 1 === currentPage ? 'bg-black text-white' : 'text-gray-700'}`}
                   onClick={() => {
                     setCurrentPage(index + 1);
-                    window.scrollTo({
-                      top: 0,
-                      behavior: 'smooth'
-                    });
+                    scroolToTop();
                   }}
                   disabled={index + 1 === currentPage}
                 >
@@ -250,10 +252,7 @@ export default function ShopPage() {
             <button
               className="flex items-center text-sm"
               onClick={() => {setCurrentPage(prev => Math.min(prev + 1, totalPages));
-                window.scrollTo({
-                  top: 0,
-                  behavior: 'smooth'
-                });
+                scroolToTop();
               }}
               disabled={currentPage === totalPages}
             >

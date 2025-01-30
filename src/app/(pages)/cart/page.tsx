@@ -12,7 +12,7 @@ import ProductPrice from "@/components/productPrice";
 import { ToastAction } from "@/components/ui/toast";
 import { Button } from "@/components/ui/button";
 
-export default function Component() {
+export default function CartPage() {
   const { dispatch, state } = useCart();
   const cartItems: CartItem[] = state.items;
 
@@ -26,9 +26,9 @@ export default function Component() {
       0
     );
 
-  const deliveryFee = 15;
+  const deliveryFee = Math.floor(Math.random() * (65 - 20 + 1)) + 20;
   const total = subtotal - discount + deliveryFee;
-  const formatPrice = (price: number) => price.toFixed(2)
+  const formatPrice = (price: number) => price.toFixed(2);
 
   const handleRemoveItem = (item:CartItem) => {
     removeFromCart(dispatch, { id: String(item.id), name: '', price: 0, image: '', color: String(item.color), size: String(item.size) })

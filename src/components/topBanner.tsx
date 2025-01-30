@@ -14,7 +14,7 @@ const TopBanner = () => {
       <div className="relative max-w-frame mx-auto">
         <p className="text-xs sm:text-sm">
           Sign up and get 20% off to your first order.{"  "}
-          <Link href="/auth?tab=signup" className="underline font-medium hover:text-gray-200">
+          <Link href="/auth/signup" className="underline font-medium hover:text-gray-200">
             Sign Up Now
           </Link>
         </p>

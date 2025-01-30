@@ -1,11 +1,5 @@
-// import { ShipEngine } from "shipengine"
 // import type { ShippingAddress, PackageDetails } from "./types"
 
-// if (!process.env.SHIPENGINE_API_KEY) {
-//   throw new Error("SHIPENGINE_API_KEY is not defined")
-// }
-
-// export const shipEngine = new ShipEngine(process.env.SHIPENGINE_API_KEY)
 
 // export const getShippingRates = async (address: ShippingAddress, packages: PackageDetails[]) => {
 //   try {

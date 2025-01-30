@@ -40,48 +40,48 @@ export default function CheckoutPage() {
   })
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    // setIsLoading(true)
-    // try {
-    //   const orderData = {
-    //     customer: values,
-    //     items: state.items,
-    //     totalAmount: state.items.reduce((total, item) => total + item.price * item.quantity, 0),
-    //   }
+    setIsLoading(true)
+    try {
+      const orderData = {
+        customer: values,
+        items: state.items,
+        totalAmount: state.items.reduce((total, item) => total + item.price * item.quantity, 0),
+      }
 
-    //   const response = await fetch("/api/create-order", {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(orderData),
-    //   })
+      const response = await fetch("/api/create-order", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderData),
+      })
 
-    //   if (!response.ok) {
-    //     throw new Error('Failed to create order')
-    //   }
+      if (!response.ok) {
+        throw new Error('Failed to create order')
+      }
 
-    //   const { orderId } = await response.json()
+      const { orderId } = await response.json()
 
-    //   // Clear the cart
-    //   dispatch({ type: 'CLEAR_CART' })
+      // Clear the cart
+      dispatch({ type: 'CLEAR_CART' })
 
-    //   // Show success message
-    //   toast({
-    //     title: "Sucess",
-    //     description: "Order placed sucessfully"
-    //   })
+      // Show success message
+      toast({
+        title: "Sucess",
+        description: "Order placed sucessfully"
+      })
 
-    //   // Redirect to the order tracking page
-    //   router.push(`/order-tracking/${orderId}`)
-    // } catch (error) {
-    //   console.error('Checkout error:', error)
-    //   toast({
-    //     title: "Error",
-    //     description: "An error occurred during checkout. Please try again."
-    //   })
-    // } finally {
-    //   setIsLoading(false)
-    // }
+      // Redirect to the order tracking page
+      // router.push(`/order-tracking/${orderId}`)
+    } catch (error) {
+      console.error('Checkout error:', error)
+      toast({
+        title: "Error",
+        description: "An error occurred during checkout. Please try again."
+      })
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const subtotal = state.items.reduce((total, item) => total + item.price * item.quantity, 0)

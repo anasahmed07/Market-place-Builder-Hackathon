@@ -8,18 +8,15 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { toast } from "@/hooks/use-toast";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 const formSchema = z.object({
     name: z.string().min(2, 'Name must be at least 2 characters'),
   email: z.string().email('Invalid email address'),
   password: z.string().min(6, 'Password must be at least 6 characters'),
-  phone: z.string().regex(/^\+?[1-9]\d{1,14}$/,{message:"Invalid phone number. Please use the international format (e.g., +1234567890)."}),
-  address: z.string().min(5, 'Address must be at least 5 characters'),
-  city: z.string().min(2, 'City must be at least 2 characters'),
-  state: z.string().min(2, 'State must be at least 2 characters'),
-  zipCode: z.string().min(5, 'Zip code must be at least 5 characters'),
+  phone: z.string().regex(/^\+?[1-9]\d{1,14}$/,{message:"Invalid phone number. Please use the international format (e.g., +1234567890)."})
 })
 
 export default function Signup() {
@@ -32,11 +29,7 @@ export default function Signup() {
             name: '',
       email: '',
       password: '',
-      phone: '',
-      address: '',
-      city: '',
-      state: '',
-      zipCode: '',
+      phone: ''
     },
   })
 
@@ -81,7 +74,7 @@ export default function Signup() {
       // Optionally, do something with the created user data
       if (data.user) {
         console.log("Created user:", data.user);
-        Router.push("/auth?tab=login")
+        Router.push("/auth/login")
         // You can redirect the user or update the UI here
       }
     } catch (error) {
@@ -166,64 +159,15 @@ export default function Signup() {
                     </FormItem>
                     )}
                 />
-                <FormField
-                    control={form.control}
-                    name="address"
-                    render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>Address</FormLabel>
-                        <FormControl>
-                        <Input placeholder="123 Main St" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="city"
-                    render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>City</FormLabel>
-                        <FormControl>
-                        <Input placeholder="New York" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="state"
-                    render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>State</FormLabel>
-                        <FormControl>
-                        <Input placeholder="NY" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="zipCode"
-                    render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>Zip Code</FormLabel>
-                        <FormControl>
-                        <Input placeholder="10001" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                    )}
-                />
                 <Button type="submit" className="w-full" disabled={isLoading}>
                     {isLoading ? 'Creating New User...' : 'Sign Up'}
                 </Button>
                 </form>
             </Form>
         </CardContent>
+        <CardFooter className='text-center'>
+          Already A user ? <Link className='pl-1 underline hover:text-blue-600' href={"/auth/login"}> LogIn</Link>
+        </CardFooter>
     </Card>
     </div>
   )

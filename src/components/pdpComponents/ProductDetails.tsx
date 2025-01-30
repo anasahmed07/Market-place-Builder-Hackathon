@@ -1,6 +1,6 @@
 import Rating from "../rating";
 import ProductPrice from "../productPrice";
-import { Minus, Plus } from "lucide-react";
+import { Check, Minus, Plus } from "lucide-react";
 import { useState } from "react";
 import { integralCF } from "@/styles/fonts";
 import { detailedProductData } from "@/lib/types";
@@ -65,10 +65,15 @@ export default function ProductDatails({ product }: { product: detailedProductDa
               <button
                 key={color.toString()}
                 onClick={() => setSelectedColor(color)}
-                className={`w-8 h-8 rounded-full ring-2 ring-offset-2 ${selectedColor === color ? "ring-black" : "ring-transparent hover:ring-gray-300"}`}
+                className={`relative w-8 h-8 border border-gray-200 rounded-full`}
                 style={{ backgroundColor: color.toString() }}
                 aria-label={color.toString()}
               >
+                {selectedColor === color && (
+                  <span className="absolute inset-0 flex items-center justify-center">
+                    <Check className={`h-4 w-4 ${color ==="white"?"text-black":"text-white"} `} />
+                  </span>
+                )}
                 <span className="sr-only">{color}</span>
               </button>
             ))}

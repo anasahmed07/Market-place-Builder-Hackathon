@@ -21,7 +21,7 @@ export default function ImageGallery({ images }: { images: StaticImageData[] | s
                 <button
                   key={index}
                   onClick={() => setMainImage(image)}
-                  className={`aspect-square col-span-1 row-span-1 sm:max-w-48 sm:max-h-48 bg-gray-100 rounded-lg overflow-hidden ${mainImage === image && "ring-2 ring-black"}`}
+                  className={`aspect-square col-span-1 row-span-1 sm:max-w-48 sm:max-h-48 border border-gray-100 bg-gray-200 rounded-lg overflow-hidden ${mainImage === image && "ring-2 ring-black"}`}
                 >
                   <Image
                     src={image || "/placeholder.svg"}
