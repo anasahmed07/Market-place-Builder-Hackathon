@@ -16,7 +16,7 @@ export default function ProductDetailSkeleton() {
       <div className="grid md:grid-cols-2 md:gap-x-8 md:items-start">
         {/* Image Gallery Skeleton */}
         <div className="mx-7 grid grid-rows-4 lg:grid-rows-1 lg:grid-cols-4 gap-6">
-          <div className="lg:col-span-3 aspect-square lg:hidden row-span-3 w-full max-h-[60vh">
+          <div className="lg:col-span-3 aspect-square lg:hidden row-span-3 w-full max-h-[60vh]">
             <Skeleton className="w-full h-full rounded-lg" />
           </div>
           <div className="grid grid-cols-4 lg:grid-cols-1 lg:grid-rows-4 w-full max-w-2xl mx-auto row-span-1 gap-2 my-px md:gap-6">
@@ -77,7 +77,7 @@ export default function ProductDetailSkeleton() {
       <div className="mt-16">
         <div className="border-b border-gray-200">
           <div className="flex justify-evenly">
-            {[...Array(3)].map((index) => (
+            {[...Array(3)].map((_, index) => (
               <Skeleton key={index} className="h-10 w-36 mb-5" />
             ))}
           </div>

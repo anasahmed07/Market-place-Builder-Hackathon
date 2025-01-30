@@ -20,7 +20,9 @@ export default function ProductDetail({ params }: { params: Promise<{ slug: stri
     const getPageData = async () => {
       const data = await fetchProductBySlug((await params).slug)
       setProduct(data)
-      if (!data) {notFound()}
+      if (!data) {
+        notFound()
+      }
       setIsLoading(false)
     }
     getPageData()

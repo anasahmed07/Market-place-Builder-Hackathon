@@ -6,7 +6,7 @@ import { CartItem } from "@/lib/types";
 import { useCart } from "@/context/CartContext";
 import { satoshi } from "@/styles/fonts";
 import { cn } from "@/lib/utils";
-import { removeFromCart, updateQuantity } from "@/lib/utils";
+import { removeFromCart, updateQuantity,addToCart } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 import ProductPrice from "@/components/productPrice";
 import { ToastAction } from "@/components/ui/toast";
@@ -32,10 +32,23 @@ export default function Component() {
 
   const handleRemoveItem = (item:CartItem) => {
     removeFromCart(dispatch, { id: String(item.id), name: '', price: 0, image: '', color: String(item.color), size: String(item.size) })
+    const Undo = () => {
+      addToCart(dispatch, item)
+      toast({
+        title: "Undone",
+        description:"action undone",
+        action:<ToastAction altText="dismiss">dismiss</ToastAction>
+      })
+    }
     toast({
       title: "Removed",
       description: `${item.quantity +" "+ item.name} was removed from your cart`,
-      action: <ToastAction altText="view cart"><Button >Undo</Button></ToastAction>,
+      action: (
+      <>
+        <Button onClick={Undo}>Undo</Button>
+        <ToastAction altText="dismiss">Dismiss</ToastAction>
+      </>
+      ),
     })
   }
 

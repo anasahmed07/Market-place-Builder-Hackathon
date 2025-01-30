@@ -10,6 +10,7 @@ import { addToCart } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 import Link from "next/link";
 import { ToastAction } from "@/components/ui/toast"
+import { Button } from "../ui/button";
 
 
 export default function ProductDatails({ product }: { product: detailedProductData }) {
@@ -34,7 +35,7 @@ export default function ProductDatails({ product }: { product: detailedProductDa
       toast({
         title: "Added",
         description: `${product.name} added to your cart`,
-        action: <ToastAction altText="view cart"><Link href={"/cart"}>View cart</Link></ToastAction>,
+        action: (<><Link href={"/cart"}><Button>View cart</Button></Link><ToastAction altText="dismiss">Dismiss</ToastAction></>),
       })
   }
 
