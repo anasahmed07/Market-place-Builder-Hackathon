@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "cypress:open": "cypress open",
-    "createCustomer": "node scripts/exportCustomerData.mjs",
-    "uploadProducts": "node scripts/exportProducts.mjs"
+    "createCustomer": "node /scripts/exportCustomerData.mjs",
+    "uploadProducts": "node /scripts/exportProducts.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -26,6 +26,7 @@
     "@radix-ui/react-toast": "^1.2.5",
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.68.3",
+    "@stripe/react-stripe-js": "^3.1.1",
     "@stripe/stripe-js": "^5.6.0",
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.7",
@@ -46,7 +47,6 @@
     "styled-components": "^6.1.14",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",
-    "use-shopping-cart": "^3.2.0",
     "vaul": "^1.1.1",
     "zod": "^3.24.1"
   },
