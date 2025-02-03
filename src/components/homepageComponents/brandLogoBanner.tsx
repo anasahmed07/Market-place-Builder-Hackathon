@@ -12,7 +12,7 @@ export default function BrandLogoBanner() {
   
   return (
     <div className="bg-black">
-      <div className="max-w-frame mx-auto flex flex-wrap items-center justify-center md:justify-around py-2 sm:py-5 md:py-0 sm:px-4 xl:px-0 space-x-7">
+      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center md:justify-around py-2 sm:py-5 md:py-0 sm:px-4 xl:px-0 space-x-7">
         {brands.map((brand) => (
           <Image
             key={brand.name}

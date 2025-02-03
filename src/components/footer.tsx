@@ -7,7 +7,7 @@ export default function Footer() {
 
 
     return (
-        <footer className="bg-[#F3F0F1] pt-16 pb-12  absolute w-full max-w-[2000px]">
+        <footer className="bg-[#F3F0F1] pt-16 pb-12  absolute w-full ">
             <Newsletter />
             <div className={`${satoshi.className} max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10`}>
                 <div className="xl:grid xl:grid-cols-3 xl:gap-8">

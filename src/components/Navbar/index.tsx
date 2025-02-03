@@ -10,6 +10,7 @@ import ResponsiveTopNavbar from "@/components/Navbar/ResponsiveTopNavbar";
 import { Search, CircleUserRound } from "lucide-react";
 import CartBtn from "./CartBtn";
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
+import SearchBox from "./searchBox";
 
 const data: NavMenu = [
   {
@@ -69,7 +70,7 @@ const data: NavMenu = [
 const TopNavbar = () => {
   return (
     <nav className="sticky top-0 bg-white z-20 px-2 ">
-      <div className="flex relative max-w-[2000px] mx-auto items-center justify-between  py-5 md:py-6 px-4 ">
+      <div className="flex relative max-w-7xl mx-auto items-center justify-between  py-5 md:py-6 px-4 ">
         <div className="flex">
           <div className="flex items-center">
             <div className="block md:hidden mr-4 ">
@@ -100,18 +101,10 @@ const TopNavbar = () => {
             </NavigationMenuList>
           </NavigationMenu>
         </div>
-        <div className="flex">
-          <InputGroup className="hidden md:flex 2xl:w-[45rem] xl:w-96 w-auto bg-[#F0F0F0] mr-3 lg:mr-10">
-            <InputGroup.Text>
-              <Search />
-            </InputGroup.Text>
-            <InputGroup.Input
-              type="search"
-              name="search"
-              placeholder="Search for products..."
-              className="bg-transparent placeholder:text-black/40"
-            />
-          </InputGroup>
+        <div className="flex ">
+          <div className="hidden md:flex xl:w-96 w-auto mr-3 lg:mr-10">
+            <SearchBox/>
+          </div>
           <div className="flex  items-center">
             <Sheet>
               <SheetTrigger asChild>
@@ -127,18 +120,9 @@ const TopNavbar = () => {
                     </SheetClose>
                   </SheetTitle>
                 </SheetHeader>
-                <InputGroup className="flex 2xl:w-[45rem] xl:w-96 w-auto bg-[#F0F0F0] mr-3 lg:mr-10">
-                  <InputGroup.Text>
-                    <Search />
-                  </InputGroup.Text>
-                  <InputGroup.Input
-                    type="search"
-                    name="search"
-                    placeholder="Search for products..."
-                    className="bg-transparent placeholder:text-black/40"
-                  />
-                </InputGroup>
-
+                <div className="flex 2xl:w-[45rem] xl:w-96 w-auto mr-3 lg:mr-10">
+                  <SearchBox/>
+                </div>
               </SheetContent>
             </Sheet>
             <CartBtn />

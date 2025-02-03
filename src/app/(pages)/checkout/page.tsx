@@ -5,11 +5,16 @@ import { useCart } from '@/context/CartContext'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
+
+
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { useRouter } from 'next/navigation'
 import { toast } from "@/hooks/use-toast";
+import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
+
+
 
 const formSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -25,6 +30,9 @@ export default function CheckoutPage() {
   const { state, dispatch } = useCart()
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
+  const stripe = useStripe()
+  const elements = useElements()
+  const [isProcessing, setIsProcessing] = useState(false)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -48,6 +56,30 @@ export default function CheckoutPage() {
         totalAmount: state.items.reduce((total, item) => total + item.price * item.quantity, 0),
       }
 
+      if (!stripe || !elements) return
+
+      setIsProcessing(true)
+
+      const res = await fetch('/api/create-payment-intent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ subtotal }),
+      })
+
+      const { clientSecret } = await res.json()
+
+      const result = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: { card: elements.getElement(CardElement)! },
+      })
+
+      if (result.error) {
+        toast({ title: 'Error', description: result.error.message! })
+      } else if (result.paymentIntent?.status === 'succeeded') {
+        toast({ title: 'Success', description: 'Payment successful!' })
+      }
+
+      setIsProcessing(false)
+
       const response = await fetch("/api/create-order", {
         method: 'POST',
         headers: {
@@ -60,7 +92,7 @@ export default function CheckoutPage() {
         throw new Error('Failed to create order')
       }
 
-      const { orderId } = await response.json()
+      // const { orderId } = await response.json()
 
       // Clear the cart
       dispatch({ type: 'CLEAR_CART' })
@@ -87,6 +119,7 @@ export default function CheckoutPage() {
   const subtotal = state.items.reduce((total, item) => total + item.price * item.quantity, 0)
 
   return (
+
     <div className="max-w-4xl mb-28 mx-auto py-8 px-4 sm:px-6 lg:px-8">
       <h1 className="text-3xl font-bold mb-8">Checkout</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -205,6 +238,13 @@ export default function CheckoutPage() {
                 <span>Total</span>
                 <span>${subtotal.toFixed(2)}</span>
               </div>
+            </div>
+            <div className="bg-gray-100 p-4 rounded-lg">
+              <h2 className="text-xl font-semibold mb-4">Payment</h2>
+              <CardElement className="p-4 border rounded-md" />
+              <Button type="submit" className="w-full" disabled={!stripe || isProcessing}>
+                {isProcessing ? 'Processing...' : 'Pay Now'}
+              </Button>
             </div>
           </div>
         </div>

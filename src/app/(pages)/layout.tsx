@@ -22,7 +22,7 @@ export default function RootLayout({children,}: Readonly<{ children: React.React
         <link rel="apple-touch-icon" sizes="180x180" href="/fav-icon/apple-touch-icon.png" />
         <link rel="manifest" href="/fav-icon/site.webmanifest" />
       </head>
-      <body className={`${satoshi.className}bg-white max-w-[2000px] mx-auto`}>
+      <body className={`${satoshi.className}bg-white`}>
         <TopBanner/>
         <CartProvider>
           <TopNavbar/>
