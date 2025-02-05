@@ -4,8 +4,7 @@ import Link from "next/link";
 
 
 export const metadata: Metadata = {
-  title: "Manage SHOP.CO | By Anas Ahmed",
-  description: "Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.",
+  title: "Manage SHOP.CO | By Anas Ahmed"
 };
 
 export default function RootLayout({children,}: Readonly<{ children: React.ReactNode;}>) {
@@ -13,9 +12,13 @@ export default function RootLayout({children,}: Readonly<{ children: React.React
   return (
     <html lang="en">
       <body>
-        <div className="h-10 bg-white border-b">
-          <Link className="text-2xl font-bold m-10" href={"/studio"}>SHOP.CO | CMS</Link>
-        </div>
+        <header>
+          <nav className="w-screen flex justify-around sm:justify-end sm:px-10 text-lg font-bold sm:space-x-9 py-4 border-b">
+            <Link href="/">Website</Link>
+            <Link href="/dashboard">Dashboard</Link>
+            <Link href="/studio">Sanity Dahboard</Link>
+          </nav>
+        </header>
         {children}
       </body>
     </html>
